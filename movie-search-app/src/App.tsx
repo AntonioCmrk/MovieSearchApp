@@ -1,6 +1,6 @@
 import MainLayout from "./layout/MainLayout";
 import NavigationRoutes from "./navigation/NavigationRoutes";
-import { QueryClient, QueryClientProvider, useQuery } from "react-query";
+import { QueryClient, QueryClientProvider } from "react-query";
 
 const queryClient = new QueryClient();
 

@@ -5,6 +5,7 @@ import type { RootState, AppDispatch } from "../state/store";
 import { MovieCard } from "../components/MovieCard";
 import { useQuery } from "react-query";
 import { getTrendingMovies } from "../api/api";
+import { HeadTitle } from "../components/HeadTitle";
 
 type State = {
   trendingMovies: any;
@@ -22,7 +23,7 @@ export const TrendingMovies = () => {
   console.log("data", data?.data);
   return (
     <div className="w-full ">
-      <div className="flex justify-center align-middle">TrendingMovies</div>
+      <HeadTitle title="Trending Movies" />
       {isLoading ? <div>Loading...</div> : null}
       {!isLoading && data === undefined ? <div>Error</div> : null}
       {!isLoading && data !== undefined ? (
