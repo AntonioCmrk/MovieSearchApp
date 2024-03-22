@@ -1,46 +1,46 @@
-import { MovieCard } from "../components/MovieCard";
 import { useQuery } from "react-query";
-import { getTrendingMovies } from "../api/api";
+import { getTopRatedMovies } from "../api/api";
 import { HeadTitle } from "../components/HeadTitle";
+import { MovieCard } from "../components/MovieCard";
 import { useNavigate } from "react-router-dom";
-import { Pagination } from "../components/Pagination";
 import { useEffect, useState } from "react";
+import { Pagination } from "../components/Pagination";
 import { Movie } from "../types/Types";
 
-export const TrendingMovies = () => {
+export const TopRatedMovies = () => {
   const navigate = useNavigate();
   const [currentPage, setCurrentPage] = useState(1);
   const [maxPage, setMaxPage] = useState(1);
-  const { data: trendingMoviesData, isLoading: trendingMoviesLoading } =
-    useQuery(["trendingMovies", currentPage], () =>
-      getTrendingMovies(currentPage)
+  const { data: topRatedMoviesData, isLoading: topRatedMoviesLoading } =
+    useQuery(["topRatedMovies", currentPage], () =>
+      getTopRatedMovies(currentPage)
     );
   useEffect(() => {
-    setMaxPage(trendingMoviesData?.data.total_pages / 2);
-  }, [trendingMoviesData?.data.total_pages]);
+    setMaxPage(topRatedMoviesData?.data.total_pages);
+  }, [topRatedMoviesData?.data.total_pages]);
   return (
     <div className="w-full">
-      <HeadTitle title="Trending Movies" />
-      {trendingMoviesLoading ? <div>Loading...</div> : null}
-      {!trendingMoviesLoading && trendingMoviesData === undefined ? (
+      <HeadTitle title="Top Rated Movies" />
+      {topRatedMoviesLoading ? <div>Loading...</div> : null}
+      {!topRatedMoviesLoading && topRatedMoviesData === undefined ? (
         <div>Error</div>
       ) : null}
-      {!trendingMoviesLoading && trendingMoviesData !== undefined ? (
+      {!topRatedMoviesLoading && topRatedMoviesData !== undefined ? (
         <>
           <div className="flex flex-wrap justify-around px-56">
-            {trendingMoviesData?.data.results.map((trendingMovie: Movie) => (
+            {topRatedMoviesData?.data.results.map((topRatedMovie: Movie) => (
               <div
-                className="p-7"
+                className="p-7 "
                 onClick={() => {
                   localStorage.setItem(
                     "storedMovie",
-                    JSON.stringify(trendingMovie)
+                    JSON.stringify(topRatedMovie)
                   );
                   navigate("/movie-details");
                 }}
-                key={trendingMovie.id}
+                key={topRatedMovie.id}
               >
-                <MovieCard movie={trendingMovie} />
+                <MovieCard movie={topRatedMovie} />
               </div>
             ))}
           </div>

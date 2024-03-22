@@ -1,8 +1,10 @@
 import { configureStore } from "@reduxjs/toolkit";
-import trendingMoviesReducer from "./trendingMovies/trendingMoviesSlice";
+import searchReducer from "./search/searchSlice";
 
 export const store = configureStore({
-  reducer: { trendingMovies: trendingMoviesReducer },
+  reducer: {
+    search: searchReducer,
+  },
 });
 
 export type RootState = ReturnType<typeof store.getState>;

@@ -6,7 +6,7 @@ const queryClient = new QueryClient();
 
 function App() {
   return (
-    <div className="min-h-screen bg-gradient-to-r from-pink-50 via-purple-50 to-indigo-50 ">
+    <div className="min-h-screen bg-gradient-to-r from-purple-100 via-pink-50 to-indigo-100 ">
       <QueryClientProvider client={queryClient}>
         <MainLayout>
           <NavigationRoutes />
