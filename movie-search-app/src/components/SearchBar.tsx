@@ -2,6 +2,7 @@ import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { storeSearchValue } from "../state/search/searchSlice";
 import { SearchBarProps } from "../types/Types";
+import { storeSearchPage } from "../state/pagination/searchPageSlice";
 
 export default function SearchBar({
   searchValue,
@@ -12,6 +13,7 @@ export default function SearchBar({
 
   const onSearch = () => {
     if (searchValue) {
+      dispatch(storeSearchPage(1));
       dispatch(storeSearchValue(searchValue));
       navigate("/search");
     }

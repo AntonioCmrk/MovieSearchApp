@@ -7,7 +7,7 @@ import { PersonCard } from "../components/PersonCard";
 import { useNavigate } from "react-router-dom";
 import { ShowCard } from "../components/ShowCard";
 import { SearchedResult } from "../types/Types";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import { Pagination } from "../components/Pagination";
 import { storeSearchPage } from "../state/pagination/searchPageSlice";
 
@@ -21,10 +21,10 @@ export const Search = () => {
   const searchValue = useSelector<RootState, string>(
     (state) => state.search.searchValue
   );
-  const searchValueRef = useRef(searchValue);
   useEffect(() => {
-    if (searchValueRef.current !== searchValue) setCurrentPage(1);
-  }, [searchValue]);
+    console.log(searchPage);
+    setCurrentPage(searchPage);
+  }, [searchValue, searchPage]);
   const { data, isLoading } = useQuery(
     ["searchMovies", searchValue, currentPage],
     () => searchMovies(searchValue, currentPage)
