@@ -90,12 +90,15 @@ export const getTrendingPersons = async (pageNumber: number = 1) => {
     });
 };
 
-export const searchMovies = async (searchValue: string) => {
+export const searchMovies = async (
+  searchValue: string,
+  currentPage: number
+) => {
   return axios
     .get(
       BASE_URL +
         SEARCH_MULTI +
-        `?api_key=8347850e3b734cd5e23c0671da06d1b7&query=${searchValue}`
+        `?api_key=8347850e3b734cd5e23c0671da06d1b7&query=${searchValue}&page=${currentPage}`
     )
     .catch(function (error) {
       console.error(error);

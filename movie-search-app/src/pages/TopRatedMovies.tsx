@@ -6,10 +6,16 @@ import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { Pagination } from "../components/Pagination";
 import { Movie } from "../types/Types";
+import { storeTopRatedMoviesPage } from "../state/pagination/topRatedMoviesPageSlice";
+import { useSelector } from "react-redux";
+import { RootState } from "../state/store";
 
 export const TopRatedMovies = () => {
   const navigate = useNavigate();
-  const [currentPage, setCurrentPage] = useState(1);
+  const topRatedMoviesPage = useSelector<RootState, number>(
+    (state) => state.topRatedMoviesPage.topRatedMoviesPage
+  );
+  const [currentPage, setCurrentPage] = useState(topRatedMoviesPage);
   const [maxPage, setMaxPage] = useState(1);
   const { data: topRatedMoviesData, isLoading: topRatedMoviesLoading } =
     useQuery(["topRatedMovies", currentPage], () =>
@@ -48,6 +54,7 @@ export const TopRatedMovies = () => {
             currentPage={currentPage}
             setCurrentPage={setCurrentPage}
             maxPage={maxPage}
+            reduxDispatchFunction={storeTopRatedMoviesPage}
           />
         </>
       ) : null}

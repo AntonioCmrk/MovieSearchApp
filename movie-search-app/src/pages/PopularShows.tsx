@@ -6,10 +6,16 @@ import { useEffect, useState } from "react";
 import { Pagination } from "../components/Pagination";
 import { ShowCard } from "../components/ShowCard";
 import { Show } from "../types/Types";
+import { storePopularShowsPage } from "../state/pagination/popularShowsPageSlice";
+import { useSelector } from "react-redux";
+import { RootState } from "../state/store";
 
 export const PopularShows = () => {
   const navigate = useNavigate();
-  const [currentPage, setCurrentPage] = useState(1);
+  const popularShowsPage = useSelector<RootState, number>(
+    (state) => state.popularShowsPage.popularShowsPage
+  );
+  const [currentPage, setCurrentPage] = useState(popularShowsPage);
   const [maxPage, setMaxPage] = useState(1);
   const { data: trendingShowsData, isLoading: trendingShowsLoading } = useQuery(
     ["trendingShows", currentPage],
@@ -48,6 +54,7 @@ export const PopularShows = () => {
             currentPage={currentPage}
             setCurrentPage={setCurrentPage}
             maxPage={maxPage}
+            reduxDispatchFunction={storePopularShowsPage}
           />
         </>
       ) : null}

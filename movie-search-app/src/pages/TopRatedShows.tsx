@@ -6,10 +6,16 @@ import { useEffect, useState } from "react";
 import { Pagination } from "../components/Pagination";
 import { ShowCard } from "../components/ShowCard";
 import { Show } from "../types/Types";
+import { storeTopRatedShowsPage } from "../state/pagination/topRatedShowsPageSlice";
+import { useSelector } from "react-redux";
+import { RootState } from "../state/store";
 
 export const TopRatedShows = () => {
   const navigate = useNavigate();
-  const [currentPage, setCurrentPage] = useState(1);
+  const topRatedShowsPage = useSelector<RootState, number>(
+    (state) => state.topRatedShowsPage.topRatedShowsPage
+  );
+  const [currentPage, setCurrentPage] = useState(topRatedShowsPage);
   const [maxPage, setMaxPage] = useState(1);
   const { data: topRatedShowsData, isLoading: topRatedShowsLoading } = useQuery(
     ["topRatedShows", currentPage],
@@ -48,6 +54,7 @@ export const TopRatedShows = () => {
             currentPage={currentPage}
             setCurrentPage={setCurrentPage}
             maxPage={maxPage}
+            reduxDispatchFunction={storeTopRatedShowsPage}
           />
         </>
       ) : null}

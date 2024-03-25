@@ -44,6 +44,7 @@ export type PaginationProps = {
   currentPage: number;
   setCurrentPage: React.Dispatch<React.SetStateAction<number>>;
   maxPage: number;
+  reduxDispatchFunction: any;
 };
 
 export type PersonCardProps = { person: Person };

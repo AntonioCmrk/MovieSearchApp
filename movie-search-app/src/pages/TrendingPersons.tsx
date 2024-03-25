@@ -5,9 +5,15 @@ import { PersonCard } from "../components/PersonCard";
 import { useEffect, useState } from "react";
 import { Pagination } from "../components/Pagination";
 import { Person } from "../types/Types";
+import { storeTrendingPersonsPage } from "../state/pagination/trendingPersonsPageSlice";
+import { useSelector } from "react-redux";
+import { RootState } from "../state/store";
 
 export const TrendingPersons = () => {
-  const [currentPage, setCurrentPage] = useState(1);
+  const trendingPersonsPage = useSelector<RootState, number>(
+    (state) => state.trendingPersonsPage.trendingPersonsPage
+  );
+  const [currentPage, setCurrentPage] = useState(trendingPersonsPage);
   const [maxPage, setMaxPage] = useState(1);
   const { data: trendingPersonsData, isLoading: trendingPersonsLoading } =
     useQuery(["trendingPersons", currentPage], () =>
@@ -36,6 +42,7 @@ export const TrendingPersons = () => {
             currentPage={currentPage}
             setCurrentPage={setCurrentPage}
             maxPage={maxPage}
+            reduxDispatchFunction={storeTrendingPersonsPage}
           />
         </>
       ) : null}

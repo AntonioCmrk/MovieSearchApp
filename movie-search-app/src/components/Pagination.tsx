@@ -1,10 +1,13 @@
+import { useDispatch } from "react-redux";
 import { PaginationProps } from "../types/Types";
 
 export const Pagination = ({
   currentPage,
   setCurrentPage,
   maxPage,
+  reduxDispatchFunction,
 }: PaginationProps) => {
+  const dispatch = useDispatch();
   const paginationNumbers = [];
   for (let i = 1; i <= maxPage; i++) {
     paginationNumbers.push(i);
@@ -19,7 +22,10 @@ export const Pagination = ({
               currentPage == pageNumber ? "bg-violet-500" : "bg-violet-300"
             }`}
             key={pageNumber}
-            onClick={() => setCurrentPage(pageNumber)}
+            onClick={() => {
+              dispatch(reduxDispatchFunction(pageNumber));
+              setCurrentPage(pageNumber);
+            }}
           >
             {pageNumber}
           </button>
@@ -33,7 +39,10 @@ export const Pagination = ({
                   currentPage == 1 ? "bg-violet-500" : "bg-violet-300"
                 }`}
                 key={1}
-                onClick={() => setCurrentPage(1)}
+                onClick={() => {
+                  dispatch(reduxDispatchFunction(1));
+                  setCurrentPage(1);
+                }}
               >
                 {1}
               </button>
@@ -49,7 +58,10 @@ export const Pagination = ({
                   currentPage == pageNumber ? "bg-violet-500" : "bg-violet-300"
                 }`}
                 key={pageNumber}
-                onClick={() => setCurrentPage(pageNumber)}
+                onClick={() => {
+                  dispatch(reduxDispatchFunction(pageNumber));
+                  setCurrentPage(pageNumber);
+                }}
               >
                 {pageNumber}
               </button>
@@ -65,7 +77,10 @@ export const Pagination = ({
                   currentPage == maxPage ? "bg-violet-500" : "bg-violet-300"
                 }`}
                 key={maxPage}
-                onClick={() => setCurrentPage(maxPage)}
+                onClick={() => {
+                  dispatch(reduxDispatchFunction(maxPage));
+                  setCurrentPage(maxPage);
+                }}
               >
                 {maxPage}
               </button>
