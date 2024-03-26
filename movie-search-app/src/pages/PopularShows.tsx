@@ -33,7 +33,7 @@ export const PopularShows = () => {
       ) : null}
       {!trendingShowsLoading && trendingShowsData !== undefined ? (
         <>
-          <div className="flex flex-wrap justify-around px-56">
+          <div className="flex flex-wrap justify-around px-56 max-lg:p-0 [&>*]:max-lg:mx-0">
             {trendingShowsData?.data.results.map((trendingShow: Show) => (
               <div
                 className="p-7 "

@@ -48,7 +48,7 @@ export const Home = () => {
         <div className="text-center">Loading...</div>
       ) : (
         <>
-          <div className="flex flex-wrap justify-around px-56 [&>*]:mx-24 [&>*]:mb-24">
+          <div className="flex flex-wrap justify-around px-56 [&>*]:mx-24 [&>*]:mb-24 max-lg:p-0 [&>*]:max-lg:mx-0">
             <HomeCard
               path={"/trending-movies"}
               name={"Trending movies"}

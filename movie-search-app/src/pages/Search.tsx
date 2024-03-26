@@ -39,7 +39,7 @@ export const Search = () => {
       {!isLoading && data === undefined ? <div>Error</div> : null}
       {!isLoading && data !== undefined ? (
         <>
-          <div className="flex flex-wrap justify-around px-56">
+          <div className="flex flex-wrap justify-around px-56 max-lg:p-0 [&>*]:max-lg:mx-0">
             {data?.data.results.map((searchedResult: SearchedResult) => (
               <div className="p-7 " key={searchedResult.id}>
                 {searchedResult.media_type === "person" ? (

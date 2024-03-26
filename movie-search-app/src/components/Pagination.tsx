@@ -14,7 +14,7 @@ export const Pagination = ({
   }
 
   return (
-    <div className="flex justify-center p-10 gap-6">
+    <div className="flex justify-center p-10 gap-6 flex-wrap max-sm:mx-24">
       {maxPage < 16 ? (
         paginationNumbers.map((pageNumber: number) => (
           <button

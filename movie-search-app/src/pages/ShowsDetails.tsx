@@ -49,28 +49,32 @@ export const ShowsDetails = () => {
       ) : (
         <>
           <HeadTitle title={storedShow.title} />
-          <div className="flex justify-center align-middle gap-3 mb-20">
-            <img
-              src={
-                imgUrl === "https://image.tmdb.org/t/p/w500null"
-                  ? "/image-not-available.png"
-                  : imgUrl
-              }
-              className="w-72 rounded-lg"
-              alt="alt"
-            />
-            <div className="flex flex-col justify-center bg-violet-100 rounded-lg [&>div]:bg-violet-200 [&>div]:p-7 gap-14 p-10 text-center [&>div]:rounded-lg max-w-7xl">
+          <div className="flex justify-center align-middle gap-3 mb-20 max-lg:flex-col max-lg:items-center ">
+            <div className="min-w-80 flex justify-center items-center">
+              <img
+                src={
+                  imgUrl === "https://image.tmdb.org/t/p/w500null"
+                    ? "/image-not-available.png"
+                    : imgUrl
+                }
+                className="w-80 rounded-lg"
+                alt="alt"
+              />
+            </div>
+            <div className="flex flex-col justify-center bg-violet-100 rounded-lg [&>div]:bg-violet-200 [&>div]:p-7 gap-14 p-10 text-center [&>div]:rounded-lg max-w-7xl max-sm:bg-transparent">
               <div>Overview: {storedShow.overview}</div>
               <div>Rating: {storedShow.vote_average}</div>
 
-              <span className="flex justify-center [&>div]:bg-violet-200 [&>div]:rounded-lg [&>div]:p-7 [&>div]:mx-10">
+              <span className="flex justify-center [&>div]:bg-violet-200 [&>div]:rounded-lg [&>div]:p-7 [&>div]:mx-10 max-sm:flex-col [&>div]:max-sm:mb-10">
                 {filteredGenresNames.map((element: string) => (
                   <div key={element}>{element}</div>
                 ))}
               </span>
             </div>
           </div>
-          <h1 className="text-xl text-violet-600 font-black ">Trailer</h1>
+          <h1 className="text-xl text-violet-600 font-black text-center">
+            Trailer
+          </h1>
           {trailerLink === "" ? (
             "Trailer unavailable"
           ) : (

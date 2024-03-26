@@ -8,20 +8,20 @@ const Navbar = () => {
   return (
     <div className="bg-violet-400 w-full p-4 h-[5.5rem]">
       <h1
-        className="absolute p-4 cursor-pointer text-xl font-bold text-violet-900"
+        className="absolute p-4 cursor-pointer text-xl font-bold text-violet-900 z-20"
         onClick={() => navigate("/")}
       >
         Movie search
       </h1>
       <ul
-        className={`flex justify-center mx-auto relative [&>*]:p-4 [&>*]:mx-7 hover:[&>*]:text-white  max-xl:bg-white max-xl:flex-col max-xl:mt-[4.5rem] max-xl:text-center rounded-b-lg max-xl:z-10 list-outside ${
+        className={`flex justify-center mx-auto relative [&>*]:p-4 [&>*]:mx-7 hover:[&>*]:text-white  max-xl:bg-white max-xl:flex-col max-xl:mt-[4.5rem] max-xl:text-center rounded-b-lg max-xl:z-10 list-outside [&>*]:max-xl:m-4 ${
           menuOpen ? "" : "max-xl:hidden"
         }`}
       >
         <li
           className="hover:bg-violet-600 cursor-pointer rounded-lg"
           onClick={() => {
-            setMenuOpen((prev) => !prev);
+            setMenuOpen(false);
             navigate("/trending-movies");
           }}
         >
@@ -30,7 +30,7 @@ const Navbar = () => {
         <li
           className="hover:bg-violet-600 cursor-pointer rounded-lg"
           onClick={() => {
-            setMenuOpen((prev) => !prev);
+            setMenuOpen(false);
             navigate("/top-rated-movies");
           }}
         >
@@ -39,7 +39,7 @@ const Navbar = () => {
         <li
           className="hover:bg-violet-600 cursor-pointer rounded-lg"
           onClick={() => {
-            setMenuOpen((prev) => !prev);
+            setMenuOpen(false);
             navigate("/trending-shows");
           }}
         >
@@ -48,7 +48,7 @@ const Navbar = () => {
         <li
           className="hover:bg-violet-600 cursor-pointer rounded-lg"
           onClick={() => {
-            setMenuOpen((prev) => !prev);
+            setMenuOpen(false);
             navigate("/top-rated-shows");
           }}
         >
@@ -58,7 +58,7 @@ const Navbar = () => {
         <li
           className="hover:bg-violet-600 cursor-pointer rounded-lg"
           onClick={() => {
-            setMenuOpen((prev) => !prev);
+            setMenuOpen(false);
             navigate("/trending-persons");
           }}
         >

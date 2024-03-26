@@ -33,7 +33,7 @@ export const TopRatedMovies = () => {
       ) : null}
       {!topRatedMoviesLoading && topRatedMoviesData !== undefined ? (
         <>
-          <div className="flex flex-wrap justify-around px-56">
+          <div className="flex flex-wrap justify-around px-56 max-lg:p-0 [&>*]:max-lg:mx-0">
             {topRatedMoviesData?.data.results.map((topRatedMovie: Movie) => (
               <div
                 className="p-7 "

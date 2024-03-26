@@ -31,7 +31,7 @@ export const TrendingPersons = () => {
       ) : null}
       {!trendingPersonsLoading && trendingPersonsData !== undefined ? (
         <>
-          <div className="flex flex-wrap justify-around px-56">
+          <div className="flex flex-wrap justify-around px-56 max-lg:p-0 [&>*]:max-lg:mx-0">
             {trendingPersonsData?.data.results.map((trendingPerson: Person) => (
               <div className="p-7 " key={trendingPerson.id}>
                 <PersonCard person={trendingPerson} />
