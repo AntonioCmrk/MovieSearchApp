@@ -26,7 +26,7 @@ export const PopularShows = () => {
   }, [trendingShowsData?.data.total_pages]);
   return (
     <div className="w-full">
-      <HeadTitle title="Top Rated Movies" />
+      <HeadTitle title="Trending Shows" />
       {trendingShowsLoading ? <div>Loading...</div> : null}
       {!trendingShowsLoading && trendingShowsData === undefined ? (
         <div>Error</div>
