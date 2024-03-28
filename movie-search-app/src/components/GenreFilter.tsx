@@ -1,11 +1,15 @@
 import { useState } from "react";
 import { Close, ArrowDown } from "react-ionicons";
+import { GenreFilterProps, GenreType } from "../types/Types";
 
-export const GenreFilter = ({ selectedGenres, setSelectedGenres }: any) => {
+export const GenreFilter = ({
+  selectedGenres,
+  setSelectedGenres,
+}: GenreFilterProps) => {
   const AddRemoveGenreFilter = (id: number) => {
     if (selectedGenres.includes(id)) {
       setSelectedGenres(
-        selectedGenres.filter((element: any) => element !== id)
+        selectedGenres.filter((element: number) => element !== id)
       );
     } else {
       setSelectedGenres([...selectedGenres, id]);
@@ -16,6 +20,7 @@ export const GenreFilter = ({ selectedGenres, setSelectedGenres }: any) => {
     const initialValue = genres ? JSON.parse(genres) : null;
     return initialValue || "";
   });
+
   const [menuOpen, setMenuOpen] = useState(false);
   return (
     <div className="lg:px-56 text-center md:px-20 px-2">
@@ -31,7 +36,7 @@ export const GenreFilter = ({ selectedGenres, setSelectedGenres }: any) => {
           menuOpen ? "" : "hidden"
         }`}
       >
-        {genres.map((genre: any) => (
+        {genres.map((genre: GenreType) => (
           <div
             key={genre.id}
             className={` rounded-full p-4 hover:bg-violet-600 cursor-pointer ${

@@ -45,8 +45,8 @@ export const TrendingMovies = () => {
             {trendingMoviesData?.data.results
               .filter(
                 selectedGenres.length
-                  ? (item: any) =>
-                      item.genre_ids.some((genre: any) =>
+                  ? (item: Movie) =>
+                      item.genre_ids.some((genre: number) =>
                         selectedGenres.includes(genre)
                       )
                   : () => trendingMoviesData?.data.results

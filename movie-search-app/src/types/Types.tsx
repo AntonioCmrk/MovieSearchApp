@@ -128,3 +128,8 @@ export type DataTrailerType = {
   official: boolean;
   id: string;
 };
+
+export type GenreFilterProps = {
+  selectedGenres: number[];
+  setSelectedGenres: React.Dispatch<React.SetStateAction<number[]>>;
+};

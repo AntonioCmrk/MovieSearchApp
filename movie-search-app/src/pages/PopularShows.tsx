@@ -43,8 +43,8 @@ export const PopularShows = () => {
             {trendingShowsData?.data.results
               .filter(
                 selectedGenres.length
-                  ? (item: any) =>
-                      item.genre_ids.some((genre: any) =>
+                  ? (item: Show) =>
+                      item.genre_ids.some((genre: number) =>
                         selectedGenres.includes(genre)
                       )
                   : () => trendingShowsData?.data.results

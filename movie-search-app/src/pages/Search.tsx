@@ -22,7 +22,6 @@ export const Search = () => {
     (state) => state.search.searchValue
   );
   useEffect(() => {
-    console.log(searchPage);
     setCurrentPage(searchPage);
   }, [searchValue, searchPage]);
   const { data, isLoading } = useQuery(

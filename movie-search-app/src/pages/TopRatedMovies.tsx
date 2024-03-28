@@ -26,6 +26,7 @@ export const TopRatedMovies = () => {
   useEffect(() => {
     setMaxPage(topRatedMoviesData?.data.total_pages);
   }, [topRatedMoviesData?.data.total_pages]);
+
   return (
     <div className="w-full">
       <HeadTitle title="Top Rated Movies" />
@@ -43,8 +44,8 @@ export const TopRatedMovies = () => {
             {topRatedMoviesData?.data.results
               .filter(
                 selectedGenres.length
-                  ? (item: any) =>
-                      item.genre_ids.some((genre: any) =>
+                  ? (item: Movie) =>
+                      item.genre_ids.some((genre: number) =>
                         selectedGenres.includes(genre)
                       )
                   : () => topRatedMoviesData?.data.results
