@@ -9,6 +9,7 @@ import { Movie } from "../types/Types";
 import { storeTopRatedMoviesPage } from "../state/pagination/topRatedMoviesPageSlice";
 import { useSelector } from "react-redux";
 import { RootState } from "../state/store";
+import { GenreFilter } from "../components/GenreFilter";
 
 export const TopRatedMovies = () => {
   const navigate = useNavigate();
@@ -21,12 +22,17 @@ export const TopRatedMovies = () => {
     useQuery(["topRatedMovies", currentPage], () =>
       getTopRatedMovies(currentPage)
     );
+  const [selectedGenres, setSelectedGenres] = useState<number[]>([]);
   useEffect(() => {
     setMaxPage(topRatedMoviesData?.data.total_pages);
   }, [topRatedMoviesData?.data.total_pages]);
   return (
     <div className="w-full">
       <HeadTitle title="Top Rated Movies" />
+      <GenreFilter
+        selectedGenres={selectedGenres}
+        setSelectedGenres={setSelectedGenres}
+      />
       {topRatedMoviesLoading ? <div>Loading...</div> : null}
       {!topRatedMoviesLoading && topRatedMoviesData === undefined ? (
         <div>Error</div>
@@ -34,21 +40,30 @@ export const TopRatedMovies = () => {
       {!topRatedMoviesLoading && topRatedMoviesData !== undefined ? (
         <>
           <div className="flex flex-wrap justify-around px-56 max-lg:p-0 [&>*]:max-lg:mx-0">
-            {topRatedMoviesData?.data.results.map((topRatedMovie: Movie) => (
-              <div
-                className="p-7 "
-                onClick={() => {
-                  localStorage.setItem(
-                    "storedMovie",
-                    JSON.stringify(topRatedMovie)
-                  );
-                  navigate("/movie-details");
-                }}
-                key={topRatedMovie.id}
-              >
-                <MovieCard movie={topRatedMovie} />
-              </div>
-            ))}
+            {topRatedMoviesData?.data.results
+              .filter(
+                selectedGenres.length
+                  ? (item: any) =>
+                      item.genre_ids.some((genre: any) =>
+                        selectedGenres.includes(genre)
+                      )
+                  : () => topRatedMoviesData?.data.results
+              )
+              .map((topRatedMovie: Movie) => (
+                <div
+                  className="p-7 "
+                  onClick={() => {
+                    localStorage.setItem(
+                      "storedMovie",
+                      JSON.stringify(topRatedMovie)
+                    );
+                    navigate("/movie-details");
+                  }}
+                  key={topRatedMovie.id}
+                >
+                  <MovieCard movie={topRatedMovie} />
+                </div>
+              ))}
           </div>
           <Pagination
             currentPage={currentPage}

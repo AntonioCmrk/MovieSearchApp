@@ -10,7 +10,7 @@ const MainLayout = ({ children }: { children: ReactNode }) => {
   return (
     <>
       <button
-        className="absolute mt-[6.5rem] ml-5 z-[2] rounded-r border-2 border-primary px-6 py-2 text-xs font-medium uppercase text-primary transition duration-150 ease-in-out hover:bg-black hover:bg-opacity-5 focus:outline-none focus:ring-0 max-lg: max-lg:left-[40%] max-lg:right-[40%] max-lg:mx-auto"
+        className="absolute mt-[6.5rem] ml-5 z-[2] rounded-r border-2 border-primary px-6 py-2 text-xs font-medium uppercase text-primary transition duration-150 ease-in-out hover:bg-black hover:bg-opacity-5 focus:outline-none focus:ring-0 max-lg: max-lg:left-[44%] max-lg:right-[44%] max-sm:left-[36%] max-sm:right-[36%] max-lg:mx-auto"
         onClick={() => navigate(-1)}
       >
         back
