@@ -1,3 +1,5 @@
+import { ActionCreatorWithPayload } from "@reduxjs/toolkit";
+
 export type HomeCardProps = { path: string; name: string; imagePath: string };
 
 export type ShowCardProps = { show: Show };
@@ -44,7 +46,7 @@ export type PaginationProps = {
   currentPage: number;
   setCurrentPage: React.Dispatch<React.SetStateAction<number>>;
   maxPage: number;
-  reduxDispatchFunction: any;
+  reduxDispatchFunction: ActionCreatorWithPayload<number, string>;
 };
 
 export type PersonCardProps = { person: Person };
