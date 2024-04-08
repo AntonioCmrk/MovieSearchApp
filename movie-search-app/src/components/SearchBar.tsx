@@ -20,7 +20,7 @@ export default function SearchBar({
   };
 
   return (
-    <div className="w-3/4 x-auto mx-10 max-lg:mt-14">
+    <div className="w-3/4 x-auto mx-10 max-lg:mt-14 max-w-[600px]">
       <div className="relative flex w-full flex-wrap  gap-2 ">
         <input
           type="search"

@@ -9,6 +9,7 @@ import { MovieDetails } from "../pages/MovieDetails";
 import { ShowsDetails } from "../pages/ShowsDetails";
 import { TopRatedShows } from "../pages/TopRatedShows";
 import { PopularShows } from "../pages/PopularShows";
+import { Playlists } from "../pages/Playlists";
 
 const NavigationRoutes = () => {
   return (
@@ -23,6 +24,7 @@ const NavigationRoutes = () => {
         <Route path="/search" element={<Search />} />
         <Route path="/movie-details" element={<MovieDetails />} />
         <Route path="/show-details" element={<ShowsDetails />} />
+        <Route path="/playlists" element={<Playlists />} />
 
         <Route path="*" element={<Error />} />
       </Routes>

@@ -5,9 +5,13 @@ import { useEffect, useState } from "react";
 import ResponsiveEmbed from "react-responsive-embed";
 import { useNavigate } from "react-router-dom";
 import { DataTrailerType, GenreType } from "../types/Types";
+import { openPlaylistModal } from "../state/modal/playlistModalSlice";
+import { useDispatch, useSelector } from "react-redux";
+import { RootState } from "../state/store";
 
 export const MovieDetails = () => {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
   const [trailerLink, setTrailerLink] = useState("");
   const [genres] = useState(() => {
     const genres = localStorage.getItem("genres");
@@ -20,6 +24,10 @@ export const MovieDetails = () => {
     return initialValue || "";
   });
   storedMovie ? null : navigate("/");
+
+  const isLogedIn = useSelector<RootState, boolean>(
+    (state) => state.loginStatus.isLogedIn
+  );
 
   const filteredGenres = genres.filter((genre: GenreType) =>
     storedMovie.genre_ids.includes(genre.id)
@@ -49,7 +57,21 @@ export const MovieDetails = () => {
         <h1>Loading...</h1>
       ) : (
         <>
-          <HeadTitle title={storedMovie.title} />
+          <div className="flex flex-col justify-center align-middle items-center">
+            <HeadTitle title={storedMovie.title} />
+            <button
+              className={`max-w-56 mb-16 z-[2] rounded-r border-2 border-primary px-6 py-2 text-xs font-medium uppercase text-primary transition duration-150 ease-in-out hover:bg-black hover:bg-opacity-5 focus:outline-none focus:ring-0 ${
+                localStorage.getItem("username") ? "" : "hidden"
+              }`}
+              type="button"
+              id="add-to-playlist-button"
+              onClick={() => {
+                dispatch(openPlaylistModal());
+              }}
+            >
+              Add to playlist
+            </button>
+          </div>
           <div className="flex justify-center align-middle gap-3 mb-20 max-lg:flex-col max-lg:items-center ">
             <div className="min-w-80 flex justify-center items-center">
               <img

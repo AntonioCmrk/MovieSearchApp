@@ -6,6 +6,10 @@ import popularShowsPageReducer from "./pagination/popularShowsPageSlice";
 import topRatedShowsPageReducer from "./pagination/topRatedShowsPageSlice";
 import trendingPersonsPageReducer from "./pagination/trendingPersonsPageSlice";
 import searchPageReducer from "./pagination/searchPageSlice";
+import modalReducer from "./modal/modalSlice";
+import playlistModalReducer from "./modal/playlistModalSlice";
+import playlistsReducer from "./playlists/playlistsSlice";
+import loginStatusReducer from "./user/loginStatusSlice";
 
 export const store = configureStore({
   reducer: {
@@ -16,6 +20,10 @@ export const store = configureStore({
     topRatedShowsPage: topRatedShowsPageReducer,
     trendingPersonsPage: trendingPersonsPageReducer,
     searchPage: searchPageReducer,
+    modal: modalReducer,
+    playlistModal: playlistModalReducer,
+    playlists: playlistsReducer,
+    loginStatus: loginStatusReducer,
   },
 });
 
