@@ -79,13 +79,19 @@ export const Playlists = () => {
   return (
     <>
       <HeadTitle title="Playlists" />
-      <div
-        className={`bg-slate-200  rounded-2xl sm:min-w-[600px] ${
-          playlists.length !== 0 ? "p-4" : null
-        }`}
-      >
-        {mapPlaylists()}
-      </div>
+      {playlists.length !== 0 ? (
+        <div
+          className={`bg-slate-200  rounded-2xl sm:min-w-[600px] ${
+            playlists.length !== 0 ? "p-4" : null
+          }`}
+        >
+          {mapPlaylists()}
+        </div>
+      ) : (
+        <div className="text-center text-2xl">
+          There are no playlists currently.
+        </div>
+      )}
     </>
   );
 };
