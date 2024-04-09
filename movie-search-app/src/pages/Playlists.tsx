@@ -44,7 +44,9 @@ export const Playlists = () => {
               <div className="flex">
                 <div
                   key={movie.id}
-                  className=" p-4 bg-slate-300 hover:bg-slate-400  cursor-pointer rounded-l-2xl my-2 ml-2 flex-[80]"
+                  className={`p-4 bg-slate-300 hover:bg-slate-400  cursor-pointer rounded-l-2xl my-2 ml-2 flex-[80] ${
+                    username === playlist.author ? "" : "rounded-2xl"
+                  }`}
                   onClick={() => {
                     localStorage.setItem(
                       "storedMovie",

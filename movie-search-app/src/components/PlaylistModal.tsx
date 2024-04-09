@@ -21,6 +21,26 @@ export const PlaylistModal = () => {
   const playlists = useSelector<RootState, []>(
     (state) => state.playlists.playlists
   );
+  const playlistMovies = useSelector<RootState, []>(
+    (state) => state.playlists.movies
+  );
+
+  const addToPlaylistFiltered = (playlistId: string) => {
+    let flag = false;
+    playlistMovies.filter((item: any) => {
+      if (item.playlistId === playlistId && item.movie.id === storedMovie.id) {
+        flag = true;
+      }
+    });
+    flag
+      ? alert("Movie is already in the playlist")
+      : dispatch(
+          addToPlaylist({
+            id: playlistId,
+            movie: storedMovie,
+          })
+        );
+  };
 
   return (
     <div
@@ -61,14 +81,10 @@ export const PlaylistModal = () => {
                       data-tooltip-id="my-tooltip"
                       data-tooltip-content={`Add move to ${playlist.playlistName}`}
                       className="rounded-full px-2 hover:bg-violet-600 bg-violet-400 ml-2 absolute right-2"
-                      onClick={() =>
-                        dispatch(
-                          addToPlaylist({
-                            id: playlist.id,
-                            movie: storedMovie,
-                          })
-                        )
-                      }
+                      onClick={() => {
+                        addToPlaylistFiltered(playlist.id);
+                        console.log("inside onclick");
+                      }}
                     >
                       +
                     </button>
@@ -92,7 +108,11 @@ export const PlaylistModal = () => {
               autoFocus
             />
             <button
-              className="rounded-2xl p-3 hover:bg-violet-600 bg-violet-400"
+              className={`rounded-2xl p-3  ${
+                newPlaylistName === ""
+                  ? "bg-gray-300"
+                  : "hover:bg-violet-600 bg-violet-400"
+              }`}
               onClick={() => {
                 setNewPlaylistName("");
                 setNewPlaylistToggle(false);
@@ -105,9 +125,15 @@ export const PlaylistModal = () => {
                 dispatch(closePlaylistModal());
               }}
               id="new-playlist-btn"
+              disabled={newPlaylistName === ""}
+              data-tooltip-id="playlsit-name-tooltip"
+              data-tooltip-content={
+                newPlaylistName === "" ? "Enter playlist name" : ""
+              }
             >
               Create new playlist and add movie
             </button>
+            <Tooltip id="playlsit-name-tooltip" />
             <button
               className="absolute top-0 right-0 rounded-full px-2 hover:bg-violet-600 bg-violet-400"
               onClick={() => {
