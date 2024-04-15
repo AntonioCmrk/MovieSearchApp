@@ -27,13 +27,12 @@ const Navbar = () => {
   let buttonMenuRef = useRef<HTMLButtonElement>(null);
 
   useEffect(() => {
-    let handler = (e: any) => {
-      console.log(e);
+    let handler = (e: MouseEvent) => {
       if (
         menuRef.current != null &&
-        !menuRef.current.contains(e.target) &&
+        !menuRef.current.contains(e.target as Node) &&
         buttonMenuRef.current != null &&
-        !buttonMenuRef.current.contains(e.target)
+        !buttonMenuRef.current.contains(e.target as Node)
       ) {
         setLogoutMenu(false);
       }
