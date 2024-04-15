@@ -2,6 +2,7 @@ import { useDispatch } from "react-redux";
 import { closeModal } from "../state/modal/modalSlice";
 import { logIn } from "../state/user/loginStatusSlice";
 import { useState } from "react";
+import toast from "react-hot-toast";
 
 export const LoginModal = () => {
   const [username, setUsername] = useState("");
@@ -18,8 +19,19 @@ export const LoginModal = () => {
       localStorage.setItem("isLoggedIn", "true");
       localStorage.setItem("username", username);
       dispatch(logIn(username));
+      toast("Successfully signed in!", {
+        icon: "👏",
+        style: {
+          borderRadius: "20px",
+        },
+      });
     } else {
-      alert("Username or passwoed incorrect");
+      toast.error("Username or password incorrect", {
+        style: {
+          borderRadius: "20px",
+        },
+        duration: 1500,
+      });
     }
   };
   return (
@@ -45,35 +57,36 @@ export const LoginModal = () => {
         </div>
         <div className="flex flex-col align-middle justify-center text-center">
           <h1 className="mb-6">Login</h1>
-          <div className="mb-6">
-            <h1>Username:</h1>
-            <input
-              placeholder="Username"
-              className="border-solid border-black border-2 rounded-2xl p-2"
-              value={username}
-              onChange={(e) => setUsername(e.target.value)}
-              onKeyDown={(e) => (e.key === "Enter" ? onSubmit() : null)}
-              autoFocus
-            />
-          </div>
-          <div className="mb-6">
-            <h1>Password:</h1>
-            <input
-              placeholder="Password"
-              className="border-solid border-black border-2 rounded-2xl p-2"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              onKeyDown={(e) => (e.key === "Enter" ? onSubmit() : null)}
-              type="password"
-            />
-          </div>
-
+          <form>
+            <div className="mb-6">
+              <h1>Username:</h1>
+              <input
+                placeholder="Username"
+                className="border-solid border-black border-2 rounded-2xl p-2"
+                value={username}
+                onChange={(e) => setUsername(e.target.value)}
+                onKeyDown={(e) => (e.key === "Enter" ? onSubmit() : null)}
+                autoFocus
+              />
+            </div>
+            <div className="mb-6">
+              <h1>Password:</h1>
+              <input
+                placeholder="Password"
+                className="border-solid border-black border-2 rounded-2xl p-2"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                onKeyDown={(e) => (e.key === "Enter" ? onSubmit() : null)}
+                type="password"
+              />
+            </div>
+          </form>
           <button
             className="rounded-2xl p-2 hover:bg-violet-600 bg-violet-400 "
             onClick={() => {
               onSubmit();
             }}
-            id="cancelBtn"
+            id="login-btn"
           >
             Log in
           </button>

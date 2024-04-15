@@ -1,4 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
+import toast from "react-hot-toast";
 import { v4 as uuidv4 } from "uuid";
 type playlistsState = {
   playlists: any;
@@ -15,6 +16,9 @@ const playlistsSlice = createSlice({
   initialState,
   reducers: {
     addToPlaylist: (state, action) => {
+      const playlist = state.playlists.find(
+        (playlist: any) => playlist.id === action.payload.id
+      );
       state.movies = [
         ...state.movies,
         {
@@ -23,11 +27,35 @@ const playlistsSlice = createSlice({
           movie: action.payload.movie,
         },
       ];
+      toast.success(
+        `Successfully added ${action.payload.movie.title} to ${playlist.playlistName}`,
+        {
+          style: {
+            borderRadius: "20px",
+            textAlign: "center",
+          },
+        }
+      );
     },
 
     deleteFromPlaylist: (state, action) => {
+      const movie = state.movies.find(
+        (movie: any) => movie.id === action.payload
+      );
+      const playlist = state.playlists.find(
+        (playlist: any) => playlist.id === movie.playlistId
+      );
       state.movies = state.movies.filter(
         (movie: any) => movie.id !== action.payload
+      );
+      toast.success(
+        `Successfully deleted ${movie.movie.title} from ${playlist.playlistName}`,
+        {
+          style: {
+            borderRadius: "20px",
+            textAlign: "center",
+          },
+        }
       );
     },
     createNewPlaylist: (state, action) => {
@@ -44,14 +72,32 @@ const playlistsSlice = createSlice({
         ...state.movies,
         { playlistId: playlistId, id: uuidv4(), movie: action.payload.movie },
       ];
+      toast.success(
+        `Successfully added ${action.payload.movie.title} to ${action.payload.playlistName}`,
+        {
+          style: {
+            borderRadius: "20px",
+            textAlign: "center",
+          },
+        }
+      );
     },
     deletePlaylist: (state, action) => {
+      const playlist = state.playlists.find(
+        (playlist: any) => playlist.id === action.payload
+      );
       state.playlists = state.playlists.filter(
         (playlist: any) => playlist.id !== action.payload
       );
       state.movies = state.movies.filter(
         (movie: any) => movie.playlistId !== action.payload
       );
+      toast.success(`Successfully deleted ${playlist.playlistName} playlist`, {
+        style: {
+          borderRadius: "20px",
+          textAlign: "center",
+        },
+      });
     },
   },
 });

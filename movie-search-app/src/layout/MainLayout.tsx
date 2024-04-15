@@ -15,6 +15,7 @@ const MainLayout = ({ children }: { children: ReactNode }) => {
   const isOpenPlaylistModal = useSelector<RootState, boolean>(
     (state) => state.playlistModal.isOpen
   );
+
   return (
     <>
       {isOpen && <LoginModal />}

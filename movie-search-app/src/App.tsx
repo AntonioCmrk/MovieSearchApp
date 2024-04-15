@@ -1,3 +1,4 @@
+import { Toaster } from "react-hot-toast";
 import MainLayout from "./layout/MainLayout";
 import NavigationRoutes from "./navigation/NavigationRoutes";
 import { QueryClient, QueryClientProvider } from "react-query";
@@ -10,6 +11,7 @@ function App() {
       <QueryClientProvider client={queryClient}>
         <MainLayout>
           <NavigationRoutes />
+          <Toaster />
         </MainLayout>
       </QueryClientProvider>
     </div>

@@ -8,6 +8,7 @@ import { useState } from "react";
 import { useSelector } from "react-redux";
 import { RootState } from "../state/store";
 import { Tooltip } from "react-tooltip";
+import toast from "react-hot-toast";
 
 export const PlaylistModal = () => {
   const dispatch = useDispatch();
@@ -33,7 +34,9 @@ export const PlaylistModal = () => {
       }
     });
     flag
-      ? alert("Movie is already in the playlist")
+      ? toast("Movie is already in the playlist", {
+          style: { borderRadius: "20px" },
+        })
       : dispatch(
           addToPlaylist({
             id: playlistId,
