@@ -7,6 +7,7 @@ import {
   deletePlaylist,
 } from "../state/playlists/playlistsSlice";
 import { useNavigate } from "react-router-dom";
+import { Playlist, PlaylistMovie } from "../types/Types";
 
 export const Playlists = () => {
   const navigate = useNavigate();
@@ -17,12 +18,14 @@ export const Playlists = () => {
   const username = useSelector<RootState, string | null>(
     (state) => state.loginStatus.username
   );
-  const playlists = useSelector<RootState, any>(
+  const playlists = useSelector<RootState, Playlist[]>(
     (state) => state.playlists.playlists
   );
-  const movies = useSelector<RootState, []>((state) => state.playlists.movies);
+  const movies = useSelector<RootState, PlaylistMovie[]>(
+    (state) => state.playlists.movies
+  );
   const mapPlaylists = () => {
-    return playlists.map((playlist: any) => {
+    return playlists.map((playlist: Playlist) => {
       return (
         <div key={playlist.id}>
           <div key={playlist.id} className=" p-6 text-lg relative">
@@ -39,7 +42,7 @@ export const Playlists = () => {
             ) : null}
           </div>
           <Tooltip id="delete-playlist-tooltip" />
-          {mapMovieLists(playlist.id).map((movie: any) => (
+          {mapMovieLists(playlist.id).map((movie: PlaylistMovie) => (
             <>
               <div className="flex">
                 <div
@@ -75,8 +78,10 @@ export const Playlists = () => {
       );
     });
   };
-  const mapMovieLists = (playlistId: any) => {
-    return movies.filter((movie: any) => movie.playlistId === playlistId);
+  const mapMovieLists = (playlistId: string) => {
+    return movies.filter(
+      (movie: PlaylistMovie) => movie.playlistId === playlistId
+    );
   };
   return (
     <>

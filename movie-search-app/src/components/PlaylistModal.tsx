@@ -9,6 +9,7 @@ import { useSelector } from "react-redux";
 import { RootState } from "../state/store";
 import { Tooltip } from "react-tooltip";
 import toast from "react-hot-toast";
+import { Playlist, PlaylistMovie } from "../types/Types";
 
 export const PlaylistModal = () => {
   const dispatch = useDispatch();
@@ -19,16 +20,16 @@ export const PlaylistModal = () => {
     const initialValue = saved ? JSON.parse(saved) : null;
     return initialValue || "";
   });
-  const playlists = useSelector<RootState, []>(
+  const playlists = useSelector<RootState, Playlist[]>(
     (state) => state.playlists.playlists
   );
-  const playlistMovies = useSelector<RootState, []>(
+  const playlistMovies = useSelector<RootState, PlaylistMovie[]>(
     (state) => state.playlists.movies
   );
 
   const addToPlaylistFiltered = (playlistId: string) => {
     let flag = false;
-    playlistMovies.filter((item: any) => {
+    playlistMovies.filter((item: PlaylistMovie) => {
       if (item.playlistId === playlistId && item.movie.id === storedMovie.id) {
         flag = true;
       }
@@ -73,7 +74,7 @@ export const PlaylistModal = () => {
             </div>
 
             {playlists.length > 0 ? (
-              playlists.map((playlist: any) =>
+              playlists.map((playlist: Playlist) =>
                 playlist.author === localStorage.getItem("username") ? (
                   <div
                     key={playlist.id}

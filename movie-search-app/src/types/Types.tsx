@@ -135,3 +135,14 @@ export type GenreFilterProps = {
   selectedGenres: number[];
   setSelectedGenres: React.Dispatch<React.SetStateAction<number[]>>;
 };
+
+export type PlaylistMovie = {
+  playlistId: string;
+  id: string;
+  movie: Movie;
+};
+export type Playlist = {
+  author: string | null;
+  id: string;
+  playlistName: string;
+};

@@ -28,6 +28,7 @@ const Navbar = () => {
 
   useEffect(() => {
     let handler = (e: any) => {
+      console.log(e);
       if (
         menuRef.current != null &&
         !menuRef.current.contains(e.target) &&
