@@ -87,7 +87,7 @@ export const PlaylistModal = () => {
                       className="rounded-full px-2 hover:bg-violet-600 bg-violet-400 ml-2 absolute right-2"
                       onClick={() => {
                         addToPlaylistFiltered(playlist.id);
-                        console.log("inside onclick");
+                        dispatch(closePlaylistModal());
                       }}
                     >
                       +

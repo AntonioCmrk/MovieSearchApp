@@ -50,7 +50,7 @@ const playlistsSlice = createSlice({
         (movie: PlaylistMovie) => movie.id !== action.payload
       );
       toast.success(
-        `Successfully deleted ${movie?.movie.title} from ${playlist?.playlistName}`,
+        `Successfully removed ${movie?.movie.title} from ${playlist?.playlistName}`,
         {
           style: {
             borderRadius: "20px",
