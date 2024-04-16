@@ -4,7 +4,7 @@ import tailwindcss from "tailwindcss";
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  base: "/movie-search-app/",
+  base: "/MovieSearchApp/",
   css: {
     postcss: {
       plugins: [tailwindcss()],
