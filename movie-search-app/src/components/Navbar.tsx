@@ -22,7 +22,7 @@ const Navbar = () => {
   const isLogedIn = useSelector<RootState, boolean>(
     (state) => state.loginStatus.isLogedIn
   );
-
+  console.log(isLogedIn);
   let menuRef = useRef<HTMLDivElement>(null);
   let buttonMenuRef = useRef<HTMLButtonElement>(null);
 

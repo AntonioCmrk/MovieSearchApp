@@ -15,6 +15,7 @@ export const Playlists = () => {
   const isLogedIn = useSelector<RootState, boolean>(
     (state) => state.loginStatus.isLogedIn
   );
+  console.log(isLogedIn);
   const username = useSelector<RootState, string | null>(
     (state) => state.loginStatus.username
   );

@@ -28,7 +28,7 @@ export const MovieDetails = () => {
   const isLogedIn = useSelector<RootState, boolean>(
     (state) => state.loginStatus.isLogedIn
   );
-
+  console.log(isLogedIn);
   const filteredGenres = genres.filter((genre: GenreType) =>
     storedMovie.genre_ids.includes(genre.id)
   );
